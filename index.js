@@ -8,7 +8,6 @@ const port = 3000;
 
 app.use(bodyParser.json());
 
-// Configurer MySQL
 const db = mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -16,11 +15,10 @@ const db = mysql.createConnection({
     database: process.env.DB_NAME
 });
 
-// Connecter à la base de données
 db.connect(err => {
     if (err) {
         console.error('Erreur de connexion :', err.message);
-        process.exit(1); // Quitte l'application si la connexion échoue
+        process.exit(1); 
     }
     console.log('Connecté à la base de données MySQL.');
 });
@@ -70,7 +68,6 @@ app.delete('/users/:id', (req, res) => {
     });
 });
 
-// Lancer le serveur
 app.listen(port, () => {
     console.log(`Serveur démarré sur http://localhost:${port}`);
 });
